@@ -1,15 +1,22 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const ChannelSchema = new Schema ({
     channelId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
-      },
+        },
     channelTitle: {
         type: String,
         unique: true,
         required: 'ChannelTitle is required',
-        trim: true
+        trim: true,
+        unique: true,
+        max: 20
+    },
+    channelBlurb: {
+        type: String,
+        trim: true,
+        required: 'ChannelBlurb is required',
     }
 },
 {

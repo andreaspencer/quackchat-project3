@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const ChatSchema = new Schema ({
     chatId: {
@@ -7,20 +8,28 @@ const ChatSchema = new Schema ({
         },
     chatText: {
         type: String,
-        required: true,
+        required: 'ChatText is required',
         trim: true,
         minlength: 1,
         maxlength: 300
     },
+    chatSender: {
+        type: String,
+        required: 'ChatSender is required'
+    },
     // There will be a dedicated private message channel to make sure all 
     // chats have an assigned channel value
-    channel: {
+    chatChannel: {
         type: String,
-        required: 'channel is required'
+        required: 'Channel is required'
     },
     // For private messages 
-    dQUser: {
+    dQTarget: {
         type: String,
+    },
+    displayed: {
+        type: Boolean,
+        defaut: false
     },
     createdAt: {
         type: Date,
