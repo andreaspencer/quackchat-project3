@@ -24,10 +24,10 @@ const ChatSchema = new Schema ({
         required: 'Channel is required'
     },
     // For private messages 
-    dQTarget: {
+    chatTarget: {
         type: String,
     },
-    displayed: {
+    chatDisplayed: {
         type: Boolean,
         defaut: false
     },
