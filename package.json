@@ -17,6 +17,7 @@
         "concurrently": "^5.1.0"
     },
     "dependencies": {
+        "express": "^4.17.2",
         "passport": "^0.5.2",
         "passport-google-oauth20": "^2.0.0"
     }
