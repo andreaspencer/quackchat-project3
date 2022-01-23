@@ -13,12 +13,12 @@ code {
 }
 
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
+  --primary: #4b154b;
+  --secondary: #c29dd1;
+  --tertiary: #d2c0da;
   --quatrinary: #cadbda;
   --light: #e1f5f4;
-  --dark: #6c7575;
+  --dark: #414747;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -45,7 +45,13 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-image: url("./img/quack_slack.jpg");
+  background-size: 100%;
+}
+
+header, footer {
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 h1,
@@ -53,14 +59,14 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6, .h1 {
   font-family: 'Karla', sans-serif;
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
 }
 
-h1 {
+h1, .h1 {
   font-size: 2.25rem;
 }
 
@@ -112,6 +118,12 @@ nav a {
 nav a:hover {
   color: var(--secondary);
   background-color: var(--dark);
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  float: left;
 }
 
 .page-title {
