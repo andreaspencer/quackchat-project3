@@ -17,11 +17,14 @@
 
 const express = require('express');
 //passport strategies
+
 require("./models/User");
 require("./services/passport");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
+
+
 
 
 const {ApolloServer} = require('apollo-server-express');
@@ -60,6 +63,7 @@ startServer()
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 
 //cookieSession for passport
 app.use(
