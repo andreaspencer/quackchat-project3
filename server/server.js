@@ -17,7 +17,11 @@
 
 const express = require('express');
 //passport strategies
+require("./models/User");
 require("./services/passport");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+const keys = require("./config/keys");
 
 
 const {ApolloServer} = require('apollo-server-express');
@@ -27,6 +31,7 @@ require("dotenv").config();
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+//const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -44,7 +49,7 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: authMiddleware,
+    context:  ({req, res}) => ({ req, res }), authMiddleware
   });
   await server.start();
   server.applyMiddleware({ app });
@@ -56,7 +61,16 @@ startServer()
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//cookieSession for passport
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 

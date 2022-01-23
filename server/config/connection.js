@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const keys = require("./keys");
+
+mongoose.promise = global.Promise;
 
 
 mongoose.connect(
@@ -6,7 +9,10 @@ mongoose.connect(
   {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
-  }
+  },
+  keys.mongoURI
 );
 
+
+mongoose.set('debug', true);
 module.exports = mongoose.connection;
