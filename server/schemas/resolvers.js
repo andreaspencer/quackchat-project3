@@ -8,9 +8,6 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          // .populate('thoughts')
-          // .populate('friends');
-
         return userData;
       }
 
@@ -43,19 +40,20 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
       return { token, user };
     },
-
-    
-      
+    addChat: async (parent, args, context) => {
+      if (context.user) {
+        const chat = await Chat.create({ ...args, username: context.user.username });
+        return chat;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 };
 
