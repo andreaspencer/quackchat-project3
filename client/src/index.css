@@ -13,9 +13,9 @@ code {
 }
 
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
+  --primary: #583c5e;
+  --secondary: #c29dd1;
+  --tertiary: #d2c0da;
   --quatrinary: #cadbda;
   --light: #e1f5f4;
   --dark: #6c7575;
@@ -46,6 +46,11 @@ body {
   font-size: 20px;
   color: var(--dark);
   background-color: #f3fffee1;
+}
+
+header, footer {
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 h1,
