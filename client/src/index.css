@@ -13,7 +13,7 @@ code {
 }
 
 :root {
-  --primary: #583c5e;
+  --primary: #4b154b;
   --secondary: #c29dd1;
   --tertiary: #d2c0da;
   --quatrinary: #cadbda;
@@ -45,7 +45,8 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-image: url("./img/quack_slack.jpg");
+  background-size: 100%;
 }
 
 header, footer {
