@@ -16,6 +16,13 @@
 
 
 const express = require('express');
+//passport strategies
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const keys = require("./config/keys");
+
+
+
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 require("dotenv").config();
@@ -24,7 +31,7 @@ const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 const startServer = async () => {
@@ -42,6 +49,25 @@ startServer()
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+
+//"Hey, Passport! Listen up!"
+passport.use(new GoogleStrategy({
+  clientID: keys.googleClientID,
+  clientSecret: keys.googleClientSecret,
+  callbackURL: "/auth/google/callback"
+},
+  accessToken => {
+    console.log(accessToken);
+  }
+));
+
+app.get("/auth/google", 
+passport.authenticate("google", {
+  scope: ["profile", "email"]
+}));
+
+
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
