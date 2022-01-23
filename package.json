@@ -17,6 +17,8 @@
         "concurrently": "^5.1.0"
     },
     "dependencies": {
+        "cookie-session": "^2.0.0",
+        "mongoose": "^6.1.7",
         "express": "^4.17.2",
         "passport": "^0.5.2",
         "passport-google-oauth20": "^2.0.0"

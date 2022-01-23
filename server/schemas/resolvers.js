@@ -1,6 +1,8 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+//const mongoose = require('mongoose');
+const { authenticateGoogle } = require('../services/passport');
 
 const resolvers = {
   Query: {
@@ -47,6 +49,48 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+
+    
+
+
+    authGoogle: async (_, { input: { accessToken } }, { req, res }) => {
+      req.body = {
+        ...req.body,
+        access_token: accessToken,
+      };
+
+      try {
+        // data contains the accessToken, refreshToken and profile from passport
+        const { data, info } = await authenticateGoogle(req, res);
+
+        if (data) {
+          const user = await User.upsertGoogleUser(data);
+
+          if (user) {
+            return ({
+              name: user.name,
+              token: user.generateJWT(),
+            });
+          }
+        }
+
+        if (info) {
+          console.log(info);
+          switch (info.code) {
+            case 'ETIMEDOUT':
+              return (new Error('Failed to reach Google: Try Again'));
+            default:
+              return (new Error('something went wrong'));
+          }
+        }
+        return (Error('server error'));
+      } catch (error) {
+        return error;
+      }
+    },
+  
+      
     addChat: async (parent, args, context) => {
       if (context.user) {
         const chat = await Chat.create({ ...args, username: context.user.username });
@@ -54,6 +98,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
   }
 };
 
