@@ -17,10 +17,7 @@
 
 const express = require('express');
 //passport strategies
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const keys = require("./config/keys");
-
+require("./services/passport");
 
 
 const {ApolloServer} = require('apollo-server-express');
@@ -33,6 +30,15 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+
+
+// call passport authRoutes
+
+require("./routes/authRoutes")(app);
+
+
+
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -51,21 +57,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-//"Hey, Passport! Listen up!"
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientID,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: "/auth/google/callback"
-},
-  accessToken => {
-    console.log(accessToken);
-  }
-));
 
-app.get("/auth/google", 
-passport.authenticate("google", {
-  scope: ["profile", "email"]
-}));
 
 
 
