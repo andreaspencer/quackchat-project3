@@ -8,8 +8,8 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('thoughts')
-          .populate('friends');
+          // .populate('thoughts')
+          // .populate('friends');
 
         return userData;
       }
@@ -19,14 +19,14 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('thoughts')
-        .populate('friends');
+        // .populate('thoughts')
+        // .populate('friends');
     },
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
-        .populate('friends')
-        .populate('thoughts');
+        // .populate('friends')
+        // .populate('thoughts');
     }
   },
 
