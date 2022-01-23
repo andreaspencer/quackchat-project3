@@ -24,4 +24,15 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_CHAT = gql`
+  mutation addChat($chatText: String!, $chatSender: String!, $chatChannel: String!, $chatTarget: String, chatDisplayed: Boolean!) {
+    addChat(chatText: $chatText, chatSender: $chatSender, chatChannel: $chatChannel, chatTarget: $chatTarget, chatDisplayed: $chatDisplayed) {
+      token
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
 

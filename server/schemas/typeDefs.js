@@ -40,8 +40,6 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addChat(chatText: String!, chatSender: String!, chatSender: String!, chatChannel: String!, chatTarget: String, chatDisplayed: Boolean): Chat
-    addReaction(thoughtId: ID!, reactionBody: String!): Thought
-    addFriend(friendId: ID!): User
   }
 `;
 
