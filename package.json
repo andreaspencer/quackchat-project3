@@ -18,9 +18,10 @@
     },
     "dependencies": {
         "cookie-session": "^2.0.0",
-        "mongoose": "^6.1.7",
         "express": "^4.17.2",
+        "mongoose": "^6.1.7",
         "passport": "^0.5.2",
-        "passport-google-oauth20": "^2.0.0"
+        "passport-google-oauth20": "^2.0.0",
+        "react-google-login": "^5.2.2"
     }
 }

@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
+
+//Google Passport Styles
+import { GoogleLogin } from "react-google-login"
+import Icon from "./Icon"
+import { useDispatch } from "react-redux"
+
+
+
+
 import Auth from '../utils/auth';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
+  const dispatch = useDispatch();
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -39,6 +49,35 @@ const Login = (props) => {
     });
   };
 
+
+// arrow functions for Google Login
+
+const googleSuccess = async (res) => {
+  const result = res?.profileObj;
+  const token = res?.tokenId;
+
+  try {
+
+    dispatch();
+
+  } catch (error) {
+
+
+
+
+    console.log(error);
+  }
+
+
+  console.log(res)
+};
+
+const googleFailure = (error) => {
+    console.log(error)
+    console.log("Google Sign In was unsuccessful.")
+};
+
+
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-md-6">
@@ -46,6 +85,7 @@ const Login = (props) => {
           <h4 className="card-header">Login</h4>
           <div className="card-body">
             <form onSubmit={handleFormSubmit}>
+              
               <input
                 className="form-input"
                 placeholder="Your email"
@@ -67,6 +107,23 @@ const Login = (props) => {
               <button className="btn d-block w-100" type="submit">
                 Submit
               </button>
+              <GoogleLogin 
+                clientId="GOOGLE ID"
+                render={(renderProps) => (
+                  <button //className={classes.googleButton} 
+                  color="primary" fullWidth 
+                  onClick={renderProps.onClick} 
+                  disabled={renderProps.disabled} 
+                  startIcon={<Icon />} variant="contained">
+                    Google Sign In
+                  </button>
+                )}
+
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                cookiePolicy="single_host_origin"
+              
+              />
             </form>
 
             {error && <div>Login failed</div>}
