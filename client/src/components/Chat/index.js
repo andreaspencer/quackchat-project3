@@ -1,4 +1,3 @@
-import firebase from "firebase/app";
 import "firebase/firestore";
 import { Fragment } from "react";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,13 +9,9 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import SpaIcon from '@mui/icons-material/Spa';
+import logo from '../../assets/images/quack-logo.png'
 
-export default function Chat() {
-
+const Chat = () => {
   return (
     <Fragment>
       <Container>
@@ -38,13 +33,14 @@ export default function Chat() {
             <Grid item xs={3} className="chatMenu">
               <List>
                 <ListItemButton component="a" href="#customized-list">
-                  <ListItemIcon sx={{ fontSize: 25 }}>${logo}</ListItemIcon>
+                  <ListItemIcon sx={{ fontSize: 25 }}>{logo}</ListItemIcon>
                   <ListItemText
                     sx={{ my: 0 }}
                     primary="QuackChat"
                     primaryTypographyProps={{
                       fontSize: 20,
-                      fontWeight: "medium"                }}
+                      fontWeight: "medium"
+                    }}
                   />
                 </ListItemButton>
               <Divider />
@@ -153,9 +149,4 @@ export default function Chat() {
   )
 }
 
-const Chat = () {
-
-}
-
 export default Chat;
-
