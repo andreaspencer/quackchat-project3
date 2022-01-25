@@ -152,3 +152,10 @@ export default function Chat() {
     </Fragment>
   )
 }
+
+const Chat = () {
+
+}
+
+export default Chat;
+

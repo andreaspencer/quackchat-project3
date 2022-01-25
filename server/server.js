@@ -17,9 +17,13 @@
 
 const express = require('express');
 //passport strategies
+
+require("./models/User");
+require("./services/passport");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("./config/keys");
+
 
 
 
@@ -30,15 +34,25 @@ require("dotenv").config();
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+//const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+
+
+// call passport authRoutes
+
+require("./routes/authRoutes")(app);
+
+
+
 
 const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: authMiddleware,
+    context:  ({req, res}) => ({ req, res }), authMiddleware
   });
   await server.start();
   server.applyMiddleware({ app });
@@ -51,21 +65,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-//"Hey, Passport! Listen up!"
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientID,
-  clientSecret: keys.googleClientSecret,
-  callbackURL: "/auth/google/callback"
-},
-  accessToken => {
-    console.log(accessToken);
-  }
-));
+//cookieSession for passport
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
 
-app.get("/auth/google", 
-passport.authenticate("google", {
-  scope: ["profile", "email"]
-}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
