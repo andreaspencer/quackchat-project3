@@ -11,7 +11,8 @@ import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SendIcon from '@mui/icons-material/Send';
-import Typography from "@mui/material/Typography";
+import { QUERY_USER, QUERY_ME } from "../../utils/queries";
+import resolve from "react-resolvers";
 
 const users = [
   { username: "WelcomBot", _id: 0 },

@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import Chat from '../components/Chat';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME_BASIC } from '../utils/queries';
@@ -27,6 +26,7 @@ const Home = () => {
           <div className="col-12 col-lg-3 mb-3">
               username={userData.me.username}
           </div>
+          <Chat/>
         ) : null}
       </div>
     </main>
