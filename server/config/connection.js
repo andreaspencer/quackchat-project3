@@ -1,18 +1,16 @@
-const mongoose = require('mongoose');
-const keys = require("./keys");
+const mongoose = require("mongoose");
+const { mongoURI } = require("./keys");
 
 mongoose.promise = global.Promise;
 
-
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost:27017/quackchat',
+  process.env.MONGODB_URI || "mongodb://localhost:27017/quackchat",
   {
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  keys.mongoURI
+  mongoURI
 );
 
-
-mongoose.set('debug', true);
+mongoose.set("debug", true);
 module.exports = mongoose.connection;
