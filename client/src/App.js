@@ -16,7 +16,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:5001/graphql',
+  uri: "http://localhost:5001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -42,8 +42,8 @@ function App() {
           <Header />
           <div className="container">
             <Switch>
+              <Route exact path="/" component={Login} />
               <Route exact path="/home" component={Home} />
-              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
             </Switch>
           </div>
