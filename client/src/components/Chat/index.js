@@ -22,7 +22,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const users = [
   { username: "WelcomBot", _id: 0 },
-  { username: "HelperBot", _id: 1 }
+  { username: "HelperBot", _id: 1 },
 ];
 
 const channelNav = styled(List)({
