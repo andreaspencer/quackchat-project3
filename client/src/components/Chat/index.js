@@ -55,6 +55,7 @@ const channels = [
 
 const Chat = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <Fragment>
       <Container>
