@@ -1,3 +1,4 @@
+import React from 'react';
 import { Fragment } from "react";
 import {
   Container,
@@ -11,12 +12,10 @@ import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SendIcon from '@mui/icons-material/Send';
-import { QUERY_USER, QUERY_ME } from "../../utils/queries";
-import resolve from "react-resolvers";
 
 const users = [
   { username: "WelcomBot", _id: 0 },
-  { username: "HelperBot", _id: 1 },
+  { username: "HelperBot", _id: 1 }
 ];
 
 const channelNav = styled(List)({
@@ -41,7 +40,7 @@ const dirMessageNav = styled(List)({
 });
 
 const Chat = () => {
-
+  let users = [];
   return (
     <Fragment>
       <Container>
