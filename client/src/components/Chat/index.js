@@ -1,14 +1,10 @@
 import { Fragment } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import {
   Container,
-  Typography,
   TextField,
   Button,
   Grid,
-  Divider,
-  Icon
+  Divider
 } from "@mui/material";
 import { Box } from "@mui/system";
 import List from "@mui/material/List";
@@ -16,7 +12,6 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
-import logo from "../../assets/images/quack-logo.png";
 
 const users = [
   { username: "WelcomBot", _id: 0 },
@@ -45,32 +40,13 @@ const dirMessageNav = styled(List)({
 });
 
 const Chat = () => {
+
   return (
     <Fragment>
       <Container>
         <Box>
-
-
-          <AppBar positionStatic>
-            <Toolbar display="flex" justify-content="space-between">
-              <IconButton size="medium" color="inherit" aria-label="menu" />
-              <Icon size="25pt">{logo}</Icon>
-              <Typography noWrap>QuackChat</Typography>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.props.handleLogout}
-              >
-                Logout
-              </Button>
-            </Toolbar>
-          </AppBar>
-
-
           <Grid>
             <Grid item xs={4} className="chat-container">
-            const [open, setOpen] = React.useState(true);
-            return (
               <Box sx={{ display: "flex" }}>
                 <ThemeProvider
                   theme={createTheme({
