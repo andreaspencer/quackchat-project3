@@ -26,9 +26,9 @@ const Home = () => {
           <div className="col-12 col-lg-3 mb-3">
               username={userData.me.username}
           </div>
-          <Chat/>
         ) : null}
       </div>
+      <Chat/>
     </main>
   );
 };
