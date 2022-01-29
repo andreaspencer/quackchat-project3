@@ -25,7 +25,7 @@ const users = [
   { username: "HelperBot", _id: 1 },
 ];
 
-const channelNav = styled(List)({
+/* const channelNav = styled(List)({
   "& .MuiListItemButton-root": {
     paddingLeft: 24,
     paddingRight: 24,
@@ -37,14 +37,14 @@ const channelNav = styled(List)({
   "& .MuiSvgIcon-root": {
     fontSize: 20,
   },
-});
+}); */
 
-const dirMessageNav = styled(List)({
+/* const dirMessageNav = styled(List)({
   "& .MuiListItemButton-root": {
     paddingLeft: 4,
     paddingRight: 4,
   },
-});
+}); */
 
 const channels = [
   { icon: <YardIcon />, label: "Plants" },
