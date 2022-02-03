@@ -34,4 +34,4 @@ This application is a online chatting application to help communties of people c
 <img width="1081" alt="Screen Shot 2022-01-26 at 6 02 12 PM" src="https://user-images.githubusercontent.com/87836575/151297928-d17d9424-c466-4f91-a21f-083cbac90225.png">
 
 ###### Live URL
-https://git.heroku.com/quackchat-project3.git
+https://quackchat-project3.herokuapp.com
